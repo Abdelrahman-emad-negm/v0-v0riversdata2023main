@@ -33,8 +33,8 @@ const oswald = Oswald({
 
 export const metadata: Metadata = {
   title: "Breathing River - Stories of the World's Greatest Rivers",
-  description: "An awareness website showcasing stories of the world's greatest breathing rivers",
-  generator: "v0.app",
+  description: "An awareness website showcasing stories of the world's greatest rivers",
+    generator: 'v0.app'
 }
 
 export default function RootLayout({
