@@ -54,9 +54,17 @@ export default function YangtzePage() {
 
         <div className="absolute inset-0 bg-black/50"></div>
 
-        <div className="relative text-center text-white px-4">
+        <div className="relative text-center text-white px-4 max-w-5xl">
           <h1 className="font-oswald text-5xl md:text-7xl font-bold drop-shadow-2xl uppercase">Yangtze River</h1>
           <p className="text-xl md:text-2xl mt-4 drop-shadow-lg">The Longest River in Asia</p>
+          <p className="text-base md:text-lg mt-6 drop-shadow-lg leading-relaxed">
+            Stretching for about 6,300 km, the Yangtze is the longest river in Asia and the third longest in the world.
+            Flowing entirely within China, it begins on the Tibetan Plateau and winds eastward through diverse
+            landscapes before emptying into the East China Sea near Shanghai. For thousands of years, the Yangtze has
+            nourished civilizations, serving as a vital route for transport, agriculture, and trade. Today, it remains
+            central to China's economy and culture, but faces increasing pressures from industrialization, dams,
+            pollution, and climate change.
+          </p>
         </div>
       </section>
 
