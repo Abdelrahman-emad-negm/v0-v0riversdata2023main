@@ -1,9 +1,8 @@
 "use client"
-
-import Link from "next/link"
 import { useEffect, useState } from "react"
 import { useRouter } from "next/navigation"
 import ImageComparisonSlider from "@/components/image-comparison-slider"
+import { LeftSidebar } from "@/components/left-sidebar"
 
 export default function YangtzePage() {
   const router = useRouter()
@@ -26,16 +25,8 @@ export default function YangtzePage() {
   }
 
   return (
-    <main className="min-h-screen bg-white">
-      {/* زرار الهوم فوق */}
-      <div className="fixed top-0 left-0 z-50 p-6">
-        <Link
-          href="/"
-          className="flex items-center bg-background/80 backdrop-blur-md rounded-full px-6 py-3 shadow-lg border border-border transition-all duration-500 ease-in-out hover:bg-background/90 hover:scale-105"
-        >
-          <h2 className="font-serif text-sm font-bold text-primary tracking-wider">Breathing Rivers</h2>
-        </Link>
-      </div>
+    <main className="min-h-screen bg-background">
+      <LeftSidebar />
 
       <div className="fixed top-0 right-0 z-50 p-6">
         <button
@@ -49,10 +40,7 @@ export default function YangtzePage() {
       {/* Hero Section */}
       <section className="relative min-h-[60vh] w-full flex items-center justify-center overflow-hidden">
         <video className="absolute inset-0 w-full h-full object-cover" autoPlay loop muted playsInline>
-          <source
-            src="yangtze.mp4" 
-            type="video/mp4"
-          />
+          <source src="yangtze.mp4" type="video/mp4" />
         </video>
 
         {/* overlay */}
@@ -96,7 +84,7 @@ export default function YangtzePage() {
 
       {/* النص + الفيديو */}
       <section className="container mx-auto max-w-7xl px-6 py-16">
-        <h2 className="font-oswald text-5xl font-bold text-center mb-12 text-gray-800 -mt-8 uppercase">
+        <h2 className="font-oswald text-5xl font-bold text-center mb-12 text-foreground -mt-8 uppercase">
           THE THREE GORGES DAM
         </h2>
 
@@ -121,14 +109,13 @@ export default function YangtzePage() {
 
             <div className="relative z-10">
               <p className="text-white font-merri tracking-wide leading-relaxed">
-               In 2000, Terra’s MODIS satellite images showed the Yangtze River still flowing freely, with the Three Gorges Dam only partly built and construction sites visible on the banks.
+                In 2000, Terra’s MODIS satellite images showed the Yangtze River still flowing freely, with the Three
+                Gorges Dam only partly built and construction sites visible on the banks.
               </p>
               <p className="text-white font-merri mt-6 leading-relaxed">
-                
-
-By 2006, just six years later, MODIS imagery revealed the dam complete, spanning the entire river. A massive reservoir had formed behind it, replacing the narrow river channel with a wide, calm lake.
-
-The MODIS comparison highlights how quickly the dam transformed the Yangtze River and its surroundings.
+                By 2006, just six years later, MODIS imagery revealed the dam complete, spanning the entire river. A
+                massive reservoir had formed behind it, replacing the narrow river channel with a wide, calm lake. The
+                MODIS comparison highlights how quickly the dam transformed the Yangtze River and its surroundings.
               </p>
             </div>
           </div>
@@ -151,9 +138,7 @@ The MODIS comparison highlights how quickly the dam transformed the Yangtze Rive
       </section>
 
       <section className="container mx-auto max-w-7xl px-6 pb-16 pt-8">
-        <h2 className="text-5xl font-bold text-center mb-12 text-gray-800" style={{ fontFamily: "Oswald, sans-serif" }}>
-          FIRES
-        </h2>
+        <h2 className="font-oswald text-5xl font-bold text-center mb-12 text-foreground uppercase">FIRES</h2>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-stretch">
           {/* خريطة الحرائق على اليسار */}
@@ -219,10 +204,7 @@ The MODIS comparison highlights how quickly the dam transformed the Yangtze Rive
       </section>
 
       <section className="container mx-auto max-w-7xl px-6 py-16">
-        <h2
-          className="text-5xl font-bold text-center mb-12 text-gray-800 -mt-8"
-          style={{ fontFamily: "Oswald, sans-serif" }}
-        >
+        <h2 className="font-oswald text-5xl font-bold text-center mb-12 text-foreground -mt-8 uppercase">
           FROM SAHARA TO THE NILE
         </h2>
 

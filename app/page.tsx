@@ -15,6 +15,7 @@ export default function Home() {
   const chooseRoleRef = useRef<HTMLElement>(null)
   const aboutRef = useRef<HTMLElement>(null)
   const riverStorageRef = useRef<HTMLElement>(null)
+  const takeActionRef = useRef<HTMLElement>(null)
 
   useEffect(() => {
     const handleScroll = () => {
@@ -57,7 +58,12 @@ export default function Home() {
 
   return (
     <main className="min-h-screen">
-      <Navigation overviewRef={overviewRef} chooseRoleRef={chooseRoleRef} aboutRef={aboutRef} />
+      <Navigation
+        overviewRef={overviewRef}
+        chooseRoleRef={chooseRoleRef}
+        aboutRef={aboutRef}
+        takeActionRef={takeActionRef}
+      />
       <LeftSidebar />
 
       <section className="relative h-[80vh] flex items-center justify-center overflow-hidden">
@@ -410,7 +416,11 @@ export default function Home() {
             </div>
           </section>
 
-          <section className="py-20 px-4 backdrop-blur-sm bg-background/60 relative overflow-hidden">
+          <section
+            ref={takeActionRef}
+            id="take-action"
+            className="py-20 px-4 backdrop-blur-sm bg-background/60 relative overflow-hidden scroll-mt-24"
+          >
             <div className="container mx-auto max-w-6xl relative z-10">
               <h2 className="font-oswald text-4xl md:text-5xl font-bold text-center mb-8 text-foreground uppercase">
                 TAKE ACTION
@@ -493,7 +503,7 @@ export default function Home() {
                 >
                   <div className="flex flex-col items-center text-center p-8 rounded-[2.5rem] backdrop-blur-md bg-background/80 relative overflow-hidden group h-full">
                     <div className="absolute inset-0 z-0 opacity-20 group-hover:opacity-30 transition-opacity">
-                      <img src="/river-sunset.jpg" alt="" className="w-full h-full object-cover" />
+                      <img src="/river-cleanup-volunteers.jpg" alt="" className="w-full h-full object-cover" />
                       <div className="absolute inset-0 bg-gradient-to-br from-blue-500/60 to-cyan-500/60" />
                     </div>
                     <div
@@ -503,7 +513,7 @@ export default function Home() {
                     <div className="relative z-10">
                       <div className="w-48 h-48 mb-6 relative overflow-hidden rounded-lg ring-2 ring-blue-500/30 group-hover:ring-blue-500/60 transition-all flex items-center justify-center">
                         <img
-                          src="/river-sunset.jpg"
+                          src="/river-cleanup-volunteers.jpg"
                           alt="Cleaning Campaigns"
                           className="w-full h-full object-cover object-center"
                         />

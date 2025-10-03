@@ -24,7 +24,7 @@ export default function AmazonPage() {
   }
 
   return (
-    <main className="min-h-screen bg-white">
+    <main className="min-h-screen bg-background">
       <LeftSidebar />
 
       <div className="fixed top-0 right-0 z-50 p-6">
@@ -71,14 +71,17 @@ export default function AmazonPage() {
       <section className="container mx-auto max-w-7xl px-6 py-4">
         <div className="w-full lg:w-1/2 mx-auto">
           <audio controls className="w-full rounded-lg">
-            <source src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/amaz-JT2ElCmbIWNY9vVGBYKaukYLjMF49J.mp3" type="audio/mpeg" />
+            <source
+              src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/amaz-JT2ElCmbIWNY9vVGBYKaukYLjMF49J.mp3"
+              type="audio/mpeg"
+            />
             Your browser does not support the audio element.
           </audio>
         </div>
       </section>
 
       <section className="container mx-auto max-w-7xl px-6 py-16">
-        <h2 className="font-oswald text-5xl font-bold text-center mb-12 text-gray-800 uppercase">VEGETATION</h2>
+        <h2 className="font-oswald text-5xl font-bold text-center mb-12 text-foreground uppercase">VEGETATION</h2>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-stretch">
           <div
@@ -95,12 +98,12 @@ export default function AmazonPage() {
             onMouseEnter={() => setHoveredBox("vegetation")}
             onMouseLeave={() => setHoveredBox(null)}
           >
-            <p className="text-gray-900 dark:text-white font-merri tracking-wide leading-relaxed">
+            <p className="text-foreground font-merri tracking-wide leading-relaxed">
               The Amazon rainforest is home to the largest continuous stretch of tropical forest on Earth, producing
               about 20% of the planet's oxygen. Its dense vegetation regulates rainfall patterns, absorbs vast amounts
               of carbon dioxide, and sustains millions of species.
             </p>
-            <p className="text-gray-900 dark:text-white font-merri mt-6 leading-relaxed">
+            <p className="text-foreground font-merri mt-6 leading-relaxed">
               However, satellite observations of vegetation reveal alarming changes. Deforestation and human activities
               are reducing the forest cover, threatening biodiversity and weakening one of Earth's most important
               climate regulators.
@@ -124,7 +127,7 @@ export default function AmazonPage() {
       </section>
 
       <section className="container mx-auto max-w-7xl px-6 pb-16 pt-8">
-        <h2 className="font-oswald text-5xl font-bold text-center mb-12 text-gray-800 uppercase">FIRES</h2>
+        <h2 className="font-oswald text-5xl font-bold text-center mb-12 text-foreground uppercase">FIRES</h2>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-stretch">
           <div className="border-8 border-yellow-400 rounded-lg shadow-xl p-2 bg-yellow-50 flex w-full overflow-hidden">
@@ -171,7 +174,7 @@ export default function AmazonPage() {
 
         <div className="mt-12 grid grid-cols-1 lg:grid-cols-2 gap-12 items-stretch">
           <div
-            className="p-8 rounded-md flex flex-col justify-center cursor-pointer relative overflow-hidden bg-gradient-to-br from-red-100 to-orange-100 dark:from-red-900/30 dark:to-orange-900/30"
+            className="p-8 rounded-md flex flex-col justify-center cursor-pointer relative overflow-hidden bg-gradient-to-br from-red-100 to-orange-100 dark:from-red-900/40 dark:to-orange-900/40 border border-red-200 dark:border-red-800"
             style={{
               transform: hoveredBox === "waterLevels" ? "translateZ(30px) scale(1.02)" : "translateZ(0) scale(1)",
               boxShadow:
@@ -184,12 +187,14 @@ export default function AmazonPage() {
             onMouseEnter={() => setHoveredBox("waterLevels")}
             onMouseLeave={() => setHoveredBox(null)}
           >
-            <h3 className="font-oswald text-2xl font-bold text-gray-800 mb-4 uppercase">Record Low Water Levels</h3>
-            <p className="text-gray-700 font-merri leading-relaxed mb-4">
+            <h3 className="font-oswald text-2xl font-bold text-gray-900 dark:text-white mb-4 uppercase">
+              Record Low Water Levels
+            </h3>
+            <p className="text-gray-800 dark:text-gray-100 font-merri leading-relaxed mb-4">
               The Port of Manaus recorded a water level of 12.66 meters on October 4, 2024 - the lowest since records
               began in 1902. This severe drought is directly linked to deforestation and fires in the Amazon.
             </p>
-            <p className="text-gray-700 font-merri leading-relaxed">
+            <p className="text-gray-800 dark:text-gray-100 font-merri leading-relaxed">
               As trees are cut down, the forest loses its ability to generate rainfall. Less vegetation means less
               moisture, creating a dangerous cycle of drought and fire that threatens river transportation, communities,
               and wildlife throughout the region.
@@ -209,7 +214,7 @@ export default function AmazonPage() {
       </section>
 
       <section className="container mx-auto max-w-7xl px-6 py-16">
-        <h2 className="font-oswald text-5xl font-bold text-center mb-12 text-gray-800 -mt-8 uppercase">
+        <h2 className="font-oswald text-5xl font-bold text-center mb-12 text-foreground -mt-8 uppercase">
           HUMAN ACTIVITIES
         </h2>
 

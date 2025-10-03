@@ -25,7 +25,7 @@ export default function NilePage() {
   }
 
   return (
-    <main className="min-h-screen bg-white">
+    <main className="min-h-screen bg-background">
       <LeftSidebar />
 
       <div className="fixed top-0 right-0 z-50 p-6">
@@ -72,14 +72,17 @@ export default function NilePage() {
       <section className="container mx-auto max-w-7xl px-6 py-4">
         <div className="w-full lg:w-1/2 mx-auto">
           <audio controls className="w-full rounded-lg">
-            <source src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/nile-OSlIPpTfy7WkWwwO9nrU48bi00Eg5M.mp3" type="audio/mpeg" />
+            <source
+              src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/nile-OSlIPpTfy7WkWwwO9nrU48bi00Eg5M.mp3"
+              type="audio/mpeg"
+            />
             Your browser does not support the audio element.
           </audio>
         </div>
       </section>
 
       <section className="container mx-auto max-w-7xl px-6 py-16">
-        <h2 className="font-oswald text-5xl font-bold text-center mb-12 text-gray-800 uppercase tracking-wider">
+        <h2 className="font-oswald text-5xl font-bold text-center mb-12 text-foreground uppercase tracking-wider">
           TEMPERATURE
         </h2>
 
@@ -98,12 +101,12 @@ export default function NilePage() {
             onMouseEnter={() => setHoveredBox("temperature")}
             onMouseLeave={() => setHoveredBox(null)}
           >
-            <p className="text-gray-900 dark:text-white font-merri tracking-wide leading-relaxed">
+            <p className="text-foreground font-merri tracking-wide leading-relaxed">
               This global temperature map clearly shows that Africa stands out as the hottest continent on Earth.
               Persistent high land surface temperatures increase evaporation rates and intensify drought conditions,
               placing severe stress on freshwater resources.
             </p>
-            <p className="text-gray-900 dark:text-white font-merri mt-6 leading-relaxed">
+            <p className="text-foreground font-merri mt-6 leading-relaxed">
               For the Nile, Africa's longest river and a lifeline for millions, rising heat reduces water flow, affects
               agricultural productivity, and heightens the challenges of water management. As temperatures continue to
               climb, the Nile becomes increasingly vulnerable, making its preservation more critical than ever.
@@ -127,7 +130,7 @@ export default function NilePage() {
       </section>
 
       <section className="container mx-auto max-w-7xl px-6 pb-16 pt-8">
-        <h2 className="font-oswald text-5xl font-bold text-center mb-12 text-gray-800 uppercase">FIRES</h2>
+        <h2 className="font-oswald text-5xl font-bold text-center mb-12 text-foreground uppercase">FIRES</h2>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-stretch">
           <div
@@ -188,7 +191,7 @@ export default function NilePage() {
       </section>
 
       <section className="container mx-auto max-w-7xl px-6 py-16">
-        <h2 className="font-oswald text-5xl font-bold text-center mb-12 text-gray-800 -mt-8 uppercase">
+        <h2 className="font-oswald text-5xl font-bold text-center mb-12 text-foreground -mt-8 uppercase">
           FROM SAHARA TO THE NILE
         </h2>
 
@@ -227,11 +230,13 @@ export default function NilePage() {
           </div>
 
           <div className="border-8 border-yellow-400 rounded-lg shadow-xl p-2 bg-yellow-50 flex w-full min-h-[400px]">
-  <ImageComparisonSlider
-    beforeImage="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot%202025-10-03%20033209-NncPvly1Xh2YXPlbp8p9mkP8upRBBO.png"
-    afterImage="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot%202025-10-03%20033242-9wPBkwLngrLJ1s2bePCByoAsruotw8.png"
-    beforeAlt="Nile River Temperature Map - After"
-    afterAlt="Nile River Temperature Map - Before" />
+            <ImageComparisonSlider
+              beforeImage="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot%202025-10-03%20033209-NncPvly1Xh2YXPlbp8p9mkP8upRBBO.png"
+              afterImage="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot%202025-10-03%20033242-9wPBkwLngrLJ1s2bePCByoAsruotw8.png"
+              beforeAlt="Nile River Temperature Map - After"
+              afterAlt="Nile River Temperature Map - Before"
+            />
+          </div>
         </div>
       </section>
     </main>

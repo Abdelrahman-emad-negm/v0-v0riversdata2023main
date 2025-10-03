@@ -6,9 +6,10 @@ interface NavigationProps {
   overviewRef: React.RefObject<HTMLElement>
   chooseRoleRef: React.RefObject<HTMLElement>
   aboutRef: React.RefObject<HTMLElement>
+  takeActionRef: React.RefObject<HTMLElement>
 }
 
-export function Navigation({ overviewRef, chooseRoleRef, aboutRef }: NavigationProps) {
+export function Navigation({ overviewRef, chooseRoleRef, aboutRef, takeActionRef }: NavigationProps) {
   const [activeSection, setActiveSection] = useState("")
 
   const scrollToSection = (sectionRef: React.RefObject<HTMLElement>, sectionId: string) => {
@@ -52,6 +53,14 @@ export function Navigation({ overviewRef, chooseRoleRef, aboutRef }: NavigationP
           }`}
         >
           Choose Your Role
+        </button>
+        <button
+          onClick={() => scrollToSection(takeActionRef, "take-action")}
+          className={`text-sm font-medium transition-all duration-300 hover:text-primary hover:scale-110 cursor-pointer ${
+            activeSection === "take-action" ? "text-primary" : "text-foreground"
+          }`}
+        >
+          Take Action
         </button>
         <button
           onClick={() => scrollToSection(aboutRef, "about")}
