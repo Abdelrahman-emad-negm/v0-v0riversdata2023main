@@ -20,7 +20,7 @@ interface DetectionResult {
   afterPercentage: number
 }
 
-export default function AddTreePage() {
+export default function PlantTreePage() {
   const [beforeImage, setBeforeImage] = useState<string | null>(null)
   const [afterImage, setAfterImage] = useState<string | null>(null)
   const [beforeFile, setBeforeFile] = useState<File | null>(null)
@@ -228,15 +228,6 @@ export default function AddTreePage() {
         <ThemeToggle />
       </div>
 
-      <div className="fixed top-0 right-0 z-50 p-6">
-        <Link
-          href="/adults"
-          className="flex items-center bg-background/80 backdrop-blur-md rounded-full px-6 py-3 shadow-lg border border-border transition-all duration-500 ease-in-out hover:bg-background/90 hover:scale-105 font-semibold text-sm text-primary"
-        >
-          Back to Adults
-        </Link>
-      </div>
-
       {showCamera && (
         <div className="fixed inset-0 z-50 bg-black/90 flex items-center justify-center p-4">
           <div className="relative w-full max-w-4xl">
@@ -307,7 +298,7 @@ export default function AddTreePage() {
                         No Tree Detected
                       </h2>
                       <p className="text-xl md:text-2xl text-red-700 dark:text-red-300 font-semibold">
-                        Please add a tree and try again
+                        Please plant a tree and try again
                       </p>
                     </>
                   )}
@@ -347,7 +338,7 @@ export default function AddTreePage() {
                       <div className="flex items-center gap-2 mb-3">
                         <div className="w-2 h-2 rounded-full bg-orange-500" />
                         <h4 className="font-oswald text-lg font-bold text-gray-900 dark:text-white uppercase tracking-wide">
-                          Before Adding
+                          Before Planting
                         </h4>
                       </div>
                       <div className="rounded-xl overflow-hidden shadow-md">
@@ -361,7 +352,7 @@ export default function AddTreePage() {
                       <div className="flex items-center gap-2 mb-3">
                         <div className="w-2 h-2 rounded-full bg-emerald-500" />
                         <h4 className="font-oswald text-lg font-bold text-gray-900 dark:text-white uppercase tracking-wide">
-                          After Adding
+                          After Planting
                         </h4>
                       </div>
                       <div className="rounded-xl overflow-hidden shadow-md">
@@ -413,7 +404,7 @@ export default function AddTreePage() {
                     className="px-8 py-6 text-lg font-semibold bg-gradient-to-r from-emerald-600 to-green-600 hover:from-emerald-700 hover:to-green-700 text-white shadow-lg"
                   >
                     <TreeDeciduous className="w-5 h-5 mr-2" />
-                    Add Another Tree
+                    Plant Another Tree
                   </Button>
                   <Button
                     onClick={() => setResult(null)}
@@ -430,14 +421,19 @@ export default function AddTreePage() {
         </div>
       )}
 
-      <section className="pt-32 pb-16 px-4 bg-gradient-to-br from-green-100 to-emerald-100 dark:from-green-900/20 dark:to-emerald-900/20">
-        <div className="container mx-auto max-w-4xl text-center">
+      <section className="pt-32 pb-16 px-4 bg-gradient-to-br from-green-100 to-emerald-100 dark:from-green-900/20 dark:to-emerald-900/20 relative">
+        <div className="absolute inset-0 z-0">
+          <img src="/planting-hands.jpg" alt="Planting trees" className="w-full h-full object-cover" />
+          <div className="absolute inset-0 bg-gradient-to-b from-green-600/80 via-emerald-600/70 to-background/95" />
+        </div>
+        <div className="container mx-auto max-w-4xl text-center relative z-10">
           <div className="text-6xl mb-6">🌳</div>
-          <h1 className="font-oswald text-5xl md:text-6xl font-bold text-gray-900 dark:text-white mb-6 text-balance uppercase">
-            Add a Tree, Help the Environment
+          <h1 className="font-oswald text-5xl md:text-6xl font-bold text-white mb-6 text-balance uppercase drop-shadow-lg">
+            Plant a Tree, Help the Environment
           </h1>
-          <p className="text-xl text-gray-700 dark:text-gray-300 leading-relaxed text-pretty">
-            Upload or capture before and after photos of your tree to verify your contribution to the environment
+          <p className="text-xl text-white/95 leading-relaxed text-pretty drop-shadow-md">
+            Upload or capture before and after photos of your tree planting to verify your contribution to the
+            environment
           </p>
         </div>
       </section>
@@ -447,7 +443,7 @@ export default function AddTreePage() {
           <div className="grid md:grid-cols-2 gap-8 mb-8">
             <Card className="p-6 bg-gradient-to-br from-orange-50 to-red-50 dark:from-orange-900/20 dark:to-red-900/20">
               <h3 className="font-oswald text-2xl font-bold mb-4 text-center text-gray-900 dark:text-white uppercase">
-                Before Adding
+                Before Planting
               </h3>
               <div
                 className={`border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-lg p-4 text-center cursor-pointer hover:border-primary transition-colors ${beforeImage ? "min-h-[150px]" : "min-h-[300px]"} flex flex-col items-center justify-center bg-white/50 dark:bg-gray-900/50`}
@@ -462,7 +458,7 @@ export default function AddTreePage() {
                   <>
                     <Upload className="w-16 h-16 text-gray-400 mb-4" />
                     <p className="text-gray-600 dark:text-gray-400 mb-2">Click to upload before image</p>
-                    <p className="text-sm text-gray-500 dark:text-gray-500">Photo of location before adding</p>
+                    <p className="text-sm text-gray-500 dark:text-gray-500">Photo of location before planting</p>
                   </>
                 )}
               </div>
@@ -483,7 +479,7 @@ export default function AddTreePage() {
 
             <Card className="p-6 bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20">
               <h3 className="font-oswald text-2xl font-bold mb-4 text-center text-gray-900 dark:text-white uppercase">
-                After Adding
+                After Planting
               </h3>
               <div
                 className={`border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-lg p-4 text-center cursor-pointer hover:border-primary transition-colors ${afterImage ? "min-h-[150px]" : "min-h-[300px]"} flex flex-col items-center justify-center bg-white/50 dark:bg-gray-900/50`}
@@ -498,7 +494,7 @@ export default function AddTreePage() {
                   <>
                     <Upload className="w-16 h-16 text-gray-400 mb-4" />
                     <p className="text-gray-600 dark:text-gray-400 mb-2">Click to upload after image</p>
-                    <p className="text-sm text-gray-500 dark:text-gray-500">Photo after adding the tree</p>
+                    <p className="text-sm text-gray-500 dark:text-gray-500">Photo after planting the tree</p>
                   </>
                 )}
               </div>
@@ -525,7 +521,7 @@ export default function AddTreePage() {
                   Analyzing Images...
                 </>
               ) : (
-                "Verify Tree Adding"
+                "Verify Tree Planting"
               )}
             </Button>
             {beforeImage && afterImage && !result && (
@@ -546,7 +542,7 @@ export default function AddTreePage() {
         <div className="container mx-auto max-w-4xl">
           <Card className="p-8 bg-white/80 dark:bg-gray-900/80">
             <h2 className="font-oswald text-3xl font-bold text-center mb-6 text-gray-900 dark:text-white uppercase">
-              Why Add Trees?
+              Why Plant Trees?
             </h2>
             <div className="grid md:grid-cols-2 gap-6">
               <div className="flex items-start gap-3">

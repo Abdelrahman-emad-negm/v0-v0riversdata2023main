@@ -25,7 +25,7 @@ export default function NilePage() {
   }
 
   return (
-    <main className="min-h-screen bg-gradient-to-b from-background via-background to-muted dark:from-gray-950 dark:via-gray-900 dark:to-gray-800">
+    <main className="min-h-screen bg-white">
       <LeftSidebar />
 
       <div className="fixed top-0 right-0 z-50 p-6">
@@ -45,21 +45,21 @@ export default function NilePage() {
           />
         </video>
 
-        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/50 to-black/70"></div>
+        {/* overlay */}
+        <div className="absolute inset-0 bg-black/40"></div>
 
         <div className="relative text-center text-white px-4">
-          <h1 className="font-oswald text-5xl md:text-7xl font-bold drop-shadow-2xl uppercase">Nile River</h1>
+          <h1 className="font-serif text-5xl md:text-7xl font-bold drop-shadow-2xl">Nile River</h1>
           <p className="text-xl md:text-2xl mt-4 drop-shadow-lg">The Longest River in the World</p>
 
-          <div
-            className="mt-8 max-w-4xl mx-auto text-left"
-            style={{
-              opacity: showDescription ? 1 : 0,
-              transform: showDescription ? "translateX(0)" : "translateX(-50px)",
-              transition: "all 0.8s cubic-bezier(0.4, 0, 0.2, 1)",
-            }}
-          >
-            <p className="text-lg md:text-xl leading-relaxed drop-shadow-lg font-light">
+          <div className="mt-8 max-w-4xl mx-auto">
+            <p
+              className="text-left text-base md:text-lg leading-relaxed drop-shadow-lg transition-all duration-1000 ease-out"
+              style={{
+                opacity: showDescription ? 1 : 0,
+                transform: showDescription ? "translateX(0)" : "translateX(-50px)",
+              }}
+            >
               Stretching for about 6,650 km, the Nile flows through 11 African countries and has been the cradle of
               ancient Egyptian civilization. It is the main source of freshwater for millions of people, supporting
               agriculture, transport, and daily life across northeastern Africa. Today, the Nile remains a lifeline, but
@@ -72,20 +72,20 @@ export default function NilePage() {
       <section className="container mx-auto max-w-7xl px-6 py-4">
         <div className="w-full lg:w-1/2 mx-auto">
           <audio controls className="w-full rounded-lg">
-            <source src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/git-blob/prj_MSQncApIxGTAKdjDXP55fnhUitOs/JrWYrgApnQyYS--Rwj269v/public/audio/nile/audio.mp3" type="audio/mpeg" />
+            <source src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/nile-OSlIPpTfy7WkWwwO9nrU48bi00Eg5M.mp3" type="audio/mpeg" />
             Your browser does not support the audio element.
           </audio>
         </div>
       </section>
 
       <section className="container mx-auto max-w-7xl px-6 py-16">
-        <h2 className="font-oswald text-5xl font-bold text-center mb-12 text-foreground dark:text-foreground uppercase tracking-wider">
+        <h2 className="font-oswald text-5xl font-bold text-center mb-12 text-gray-800 uppercase tracking-wider">
           TEMPERATURE
         </h2>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-stretch">
           <div
-            className="p-8 rounded-md flex flex-col w-full cursor-pointer relative overflow-hidden bg-gradient-to-br from-red-100 to-orange-100 dark:from-red-900/30 dark:to-orange-900/30"
+            className="p-8 rounded-md flex flex-col w-full cursor-pointer relative overflow-hidden bg-gray-500/70"
             style={{
               transform: hoveredBox === "temperature" ? "translateZ(30px) scale(1.02)" : "translateZ(0) scale(1)",
               boxShadow:
@@ -122,12 +122,12 @@ export default function NilePage() {
         </div>
 
         <div className="flex flex-col items-center mt-12">
-          <div className="w-full border-t-2 border-gray-300 dark:border-gray-700"></div>
+          <div className="w-full border-t-2 border-gray-300"></div>
         </div>
       </section>
 
       <section className="container mx-auto max-w-7xl px-6 pb-16 pt-8">
-        <h2 className="font-oswald text-5xl font-bold text-center mb-12 text-foreground uppercase">FIRES</h2>
+        <h2 className="font-oswald text-5xl font-bold text-center mb-12 text-gray-800 uppercase">FIRES</h2>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-stretch">
           <div
@@ -184,11 +184,11 @@ export default function NilePage() {
           </div>
         </div>
 
-        <div className="mt-8 w-full border-t-2 border-gray-300 dark:border-gray-700"></div>
+        <div className="mt-8 w-full border-t-2 border-gray-300"></div>
       </section>
 
       <section className="container mx-auto max-w-7xl px-6 py-16">
-        <h2 className="font-oswald text-5xl font-bold text-center mb-12 text-foreground -mt-8 uppercase">
+        <h2 className="font-oswald text-5xl font-bold text-center mb-12 text-gray-800 -mt-8 uppercase">
           FROM SAHARA TO THE NILE
         </h2>
 
@@ -196,7 +196,7 @@ export default function NilePage() {
           <div
             className="p-8 rounded-md flex flex-col w-full bg-cover bg-center relative overflow-hidden cursor-pointer"
             style={{
-              backgroundImage: "url('/drought-background.jpg')",
+              backgroundImage: "url('/images/dust-storm-nile.png')",
               transform:
                 hoveredBox === "From Sahara to the Nile" ? "translateZ(30px) scale(1.02)" : "translateZ(0) scale(1)",
               boxShadow:
@@ -227,13 +227,11 @@ export default function NilePage() {
           </div>
 
           <div className="border-8 border-yellow-400 rounded-lg shadow-xl p-2 bg-yellow-50 flex w-full min-h-[400px]">
-            <ImageComparisonSlider
-              beforeImage="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot%202025-10-03%20033242-9wPBkwLngrLJ1s2bePCByoAsruotw8.png"
-              afterImage="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot%202025-10-03%20033209-NncPvly1Xh2YXPlbp8p9mkP8upRBBO.png"
-              beforeAlt="Nile River Temperature Map - Before"
-              afterAlt="Nile River Temperature Map - After"
-            />
-          </div>
+  <ImageComparisonSlider
+    beforeImage="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot%202025-10-03%20033209-NncPvly1Xh2YXPlbp8p9mkP8upRBBO.png"
+    afterImage="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot%202025-10-03%20033242-9wPBkwLngrLJ1s2bePCByoAsruotw8.png"
+    beforeAlt="Nile River Temperature Map - After"
+    afterAlt="Nile River Temperature Map - Before" />
         </div>
       </section>
     </main>

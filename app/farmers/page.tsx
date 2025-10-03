@@ -204,58 +204,6 @@ export default function FarmersPage() {
         </div>
       </section>
 
-      <section className="py-16 px-4 bg-gradient-to-br from-emerald-50 to-green-50 dark:from-emerald-900/30 dark:to-green-900/30">
-        <div className="container mx-auto max-w-6xl">
-          <div className="text-center mb-12">
-            <h2 className="font-oswald text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4 uppercase">
-              Take Action Today
-            </h2>
-            <p className="text-xl text-gray-700 dark:text-gray-300 text-pretty">
-              Make a real difference by planting trees and restoring the environment
-            </p>
-          </div>
-
-          <Card
-            className="p-8 md:p-12 cursor-pointer transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl bg-gradient-to-br from-green-100 to-emerald-100 dark:from-green-900/40 dark:to-emerald-900/40 border-2 border-green-500/30"
-            onClick={() => handleCategoryClick(adviceCategories[0])}
-          >
-            <div className="grid md:grid-cols-2 gap-8 items-center">
-              <div>
-                <div className="text-7xl mb-6">🌳</div>
-                <h3 className="font-oswald text-3xl md:text-4xl font-bold mb-4 text-gray-900 dark:text-white uppercase">
-                  Help Environment
-                </h3>
-                <p className="text-lg text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
-                  Plant trees on your farm and verify your impact with our tree detection system. Every tree you plant
-                  helps restore nature and protect our rivers.
-                </p>
-                <div className="flex flex-wrap gap-3 mb-6">
-                  {adviceCategories[0].benefits.slice(0, 2).map((benefit, index) => (
-                    <div
-                      key={index}
-                      className="flex items-center gap-2 bg-white/50 dark:bg-gray-800/50 px-4 py-2 rounded-full"
-                    >
-                      <span className="text-green-600 dark:text-green-400 font-bold">✓</span>
-                      <span className="text-sm font-medium text-gray-900 dark:text-white">{benefit}</span>
-                    </div>
-                  ))}
-                </div>
-                <div className="inline-block px-6 py-3 rounded-full bg-green-600 text-white font-semibold hover:bg-green-700 transition-colors shadow-lg">
-                  Start Planting Trees →
-                </div>
-              </div>
-              <div className="w-full h-80 rounded-xl overflow-hidden shadow-xl">
-                <img
-                  src={adviceCategories[0].image || "/placeholder.svg"}
-                  alt="Help Environment"
-                  className="w-full h-full object-cover"
-                />
-              </div>
-            </div>
-          </Card>
-        </div>
-      </section>
-
       <section className="py-16 px-4">
         <div className="container mx-auto max-w-6xl">
           <div className="text-center mb-12">

@@ -4,6 +4,7 @@ import { useState } from "react"
 import Link from "next/link"
 import { Card } from "@/components/ui/card"
 import { ThemeToggle } from "@/components/theme-toggle"
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog"
 
 interface Activity {
   id: string
@@ -19,7 +20,7 @@ const activities: Activity[] = [
   {
     id: "shower",
     name: "Shower",
-    icon: "🚿",
+    icon: "",
     waterUsage: 65,
     duration: "10 minutes",
     tips: [
@@ -32,7 +33,7 @@ const activities: Activity[] = [
   {
     id: "dishes",
     name: "Washing Dishes",
-    icon: "🍽️",
+    icon: "",
     waterUsage: 40,
     duration: "15 minutes",
     tips: [
@@ -45,7 +46,7 @@ const activities: Activity[] = [
   {
     id: "laundry",
     name: "Laundry",
-    icon: "👕",
+    icon: "",
     waterUsage: 50,
     duration: "1 load",
     tips: [
@@ -58,7 +59,7 @@ const activities: Activity[] = [
   {
     id: "cooking",
     name: "Cooking",
-    icon: "🍳",
+    icon: "",
     waterUsage: 15,
     duration: "30 minutes",
     tips: [
@@ -71,7 +72,7 @@ const activities: Activity[] = [
   {
     id: "brushing",
     name: "Brushing Teeth",
-    icon: "🦷",
+    icon: "",
     waterUsage: 8,
     duration: "2 minutes",
     tips: [
@@ -84,7 +85,7 @@ const activities: Activity[] = [
   {
     id: "garden",
     name: "Watering Garden",
-    icon: "🌱",
+    icon: "",
     waterUsage: 75,
     duration: "20 minutes",
     tips: [
@@ -141,71 +142,26 @@ export default function AdultsPage() {
       </div>
 
       {/* Hero Section */}
-      <section className="pt-32 pb-16 px-4 bg-gradient-to-br from-blue-100 to-cyan-100 dark:from-blue-900/20 dark:to-cyan-900/20">
-        <div className="container mx-auto max-w-4xl text-center">
-          <h1 className="font-oswald text-5xl md:text-6xl font-bold text-gray-900 dark:text-white mb-6 text-balance uppercase">
-            For Adults
+      <section className="relative pt-32 pb-16 px-4 overflow-hidden">
+        {/* Background Image */}
+        <div className="absolute inset-0 z-0">
+          <img src="/daily-activity.jpg" alt="Daily Activities" className="w-full h-full object-cover" />
+          {/* Overlay for better text readability */}
+          <div className="absolute inset-0 bg-gradient-to-br from-blue-900/70 to-cyan-900/70 dark:from-blue-950/80 dark:to-cyan-950/80" />
+        </div>
+
+        {/* Content */}
+        <div className="container mx-auto max-w-4xl text-center relative z-10">
+          <h1 className="font-oswald text-5xl md:text-6xl font-bold text-white mb-6 text-balance uppercase drop-shadow-lg">
+            Adults
           </h1>
-          <p className="text-xl text-gray-700 dark:text-gray-300 leading-relaxed mb-4 text-pretty">
+          <p className="text-xl text-white leading-relaxed mb-4 text-pretty drop-shadow-md">
             Every individual can make a difference in protecting our rivers and environment.
           </p>
-          <p className="text-lg text-gray-600 dark:text-gray-400 leading-relaxed text-pretty">
+          <p className="text-lg text-white/90 leading-relaxed text-pretty drop-shadow-md">
             Track your water usage, add trees to our monitoring system, and learn how your daily actions impact our
             water resources.
           </p>
-        </div>
-      </section>
-
-      {/* Featured "Add Tree" Section */}
-      <section className="py-16 px-4 bg-gradient-to-br from-emerald-50 to-green-50 dark:from-emerald-900/30 dark:to-green-900/30">
-        <div className="container mx-auto max-w-6xl">
-          <div className="text-center mb-12">
-            <h2 className="font-oswald text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4 uppercase">
-              Take Action Today
-            </h2>
-            <p className="text-xl text-gray-700 dark:text-gray-300 text-pretty">
-              Help us monitor and protect trees in your community
-            </p>
-          </div>
-
-          <Link href="/adults/add-tree">
-            <Card className="p-8 md:p-12 cursor-pointer transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl bg-gradient-to-br from-green-100 to-emerald-100 dark:from-green-900/40 dark:to-emerald-900/40 border-2 border-green-500/30">
-              <div className="grid md:grid-cols-2 gap-8 items-center">
-                <div>
-                  <div className="text-7xl mb-6">🌳</div>
-                  <h3 className="font-oswald text-3xl md:text-4xl font-bold mb-4 text-gray-900 dark:text-white uppercase">
-                    Add Trees
-                  </h3>
-                  <p className="text-lg text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
-                    Help us track and monitor trees in your area. Upload or capture photos to add trees to our
-                    environmental monitoring system and contribute to protecting our rivers.
-                  </p>
-                  <div className="flex flex-wrap gap-3 mb-6">
-                    <div className="flex items-center gap-2 bg-white/50 dark:bg-gray-800/50 px-4 py-2 rounded-full">
-                      <span className="text-green-600 dark:text-green-400 font-bold">✓</span>
-                      <span className="text-sm font-medium text-gray-900 dark:text-white">
-                        Track environmental impact
-                      </span>
-                    </div>
-                    <div className="flex items-center gap-2 bg-white/50 dark:bg-gray-800/50 px-4 py-2 rounded-full">
-                      <span className="text-green-600 dark:text-green-400 font-bold">✓</span>
-                      <span className="text-sm font-medium text-gray-900 dark:text-white">Monitor CO₂ absorption</span>
-                    </div>
-                  </div>
-                  <div className="inline-block px-6 py-3 rounded-full bg-green-600 text-white font-semibold hover:bg-green-700 transition-colors shadow-lg">
-                    Start Adding Trees →
-                  </div>
-                </div>
-                <div className="w-full h-80 rounded-xl overflow-hidden shadow-xl">
-                  <img
-                    src="/lush-green-trees-growing-along-riverbank-with-clea.jpg"
-                    alt="Add Trees"
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-              </div>
-            </Card>
-          </Link>
         </div>
       </section>
 
@@ -269,56 +225,59 @@ export default function AdultsPage() {
       </section>
 
       {/* Results Section */}
-      {showResults && selectedActivities.length > 0 && (
-        <section className="py-16 px-4 bg-gradient-to-br from-blue-100 to-cyan-100 dark:from-blue-900/20 dark:to-cyan-900/20">
-          <div className="container mx-auto max-w-4xl">
-            <Card className="p-8 md:p-12 bg-gradient-to-br from-white to-blue-50 dark:from-gray-900/50 dark:to-blue-900/20">
-              <h2 className="font-oswald text-4xl font-bold text-center mb-8 text-gray-900 dark:text-white uppercase">
-                Your Water Impact
-              </h2>
+      <Dialog open={showResults} onOpenChange={setShowResults}>
+        <DialogContent className="max-w-3xl max-h-[90vh] overflow-y-auto">
+          <DialogHeader>
+            <DialogTitle className="font-oswald text-3xl font-bold text-center uppercase">
+              Your Water Impact
+            </DialogTitle>
+            <DialogDescription className="text-center">
+              See your daily water usage and learn how to reduce it
+            </DialogDescription>
+          </DialogHeader>
 
-              {/* Total Usage */}
-              <div className="text-center mb-12 p-8 rounded-2xl bg-gradient-to-br from-blue-100 to-cyan-100 dark:from-blue-900/30 dark:to-cyan-900/30">
-                <p className="text-lg text-gray-900 dark:text-white mb-2 font-semibold">Daily Water Usage</p>
-                <p className="text-6xl font-bold text-primary mb-2">{calculateTotal()}L</p>
-                <p className="text-sm text-gray-700 dark:text-gray-300">
-                  That's {(calculateTotal() / 1000).toFixed(2)} cubic meters per day
-                </p>
-                <p className="text-sm text-gray-700 dark:text-gray-300 mt-2">
-                  Annual usage: {(calculateTotal() * 365).toLocaleString()}L
-                </p>
-              </div>
+          <div className="space-y-8 py-4">
+            {/* Total Usage */}
+            <div className="text-center p-6 rounded-2xl bg-gradient-to-br from-blue-100 to-cyan-100 dark:from-blue-900/30 dark:to-cyan-900/30">
+              <p className="text-base text-gray-900 dark:text-white mb-2 font-semibold">Daily Water Usage</p>
+              <p className="text-5xl font-bold text-primary mb-2">{calculateTotal()}L</p>
+              <p className="text-sm text-gray-700 dark:text-gray-300">
+                That's {(calculateTotal() / 1000).toFixed(2)} cubic meters per day
+              </p>
+              <p className="text-sm text-gray-700 dark:text-gray-300 mt-2">
+                Annual usage: {(calculateTotal() * 365).toLocaleString()}L
+              </p>
+            </div>
 
-              {/* Conservation Tips */}
-              <div className="mb-8">
-                <h3 className="font-oswald text-2xl font-bold mb-6 text-gray-900 dark:text-white text-center uppercase">
-                  Ways to Reduce Your Water Footprint
-                </h3>
-                <div className="space-y-4">
-                  {getSelectedTips().map((tip, index) => (
-                    <div
-                      key={index}
-                      className="flex items-start gap-3 p-4 rounded-lg bg-gradient-to-br from-blue-50 to-cyan-50 dark:from-blue-900/20 dark:to-cyan-900/20"
-                    >
-                      <span className="text-primary font-bold text-lg">💧</span>
-                      <p className="text-gray-900 dark:text-white leading-relaxed">{tip}</p>
-                    </div>
-                  ))}
-                </div>
+            {/* Conservation Tips */}
+            <div>
+              <h3 className="font-oswald text-xl font-bold mb-4 text-gray-900 dark:text-white text-center uppercase">
+                Ways to Reduce Your Water Footprint
+              </h3>
+              <div className="space-y-3">
+                {getSelectedTips().map((tip, index) => (
+                  <div
+                    key={index}
+                    className="flex items-start gap-3 p-3 rounded-lg bg-gradient-to-br from-blue-50 to-cyan-50 dark:from-blue-900/20 dark:to-cyan-900/20"
+                  >
+                    <span className="text-primary font-bold text-lg">💧</span>
+                    <p className="text-sm text-gray-900 dark:text-white leading-relaxed">{tip}</p>
+                  </div>
+                ))}
               </div>
+            </div>
 
-              {/* Impact Statement */}
-              <div className="text-center p-6 rounded-xl bg-gradient-to-br from-green-100 to-emerald-100 dark:from-green-900/30 dark:to-emerald-900/30 border border-primary/20">
-                <p className="text-lg text-gray-900 dark:text-white leading-relaxed">
-                  By implementing these water-saving tips, you could reduce your daily water usage by up to{" "}
-                  <span className="font-bold text-primary">30-40%</span>, helping preserve our rivers and water
-                  resources for future generations.
-                </p>
-              </div>
-            </Card>
+            {/* Impact Statement */}
+            <div className="text-center p-4 rounded-xl bg-gradient-to-br from-green-100 to-emerald-100 dark:from-green-900/30 dark:to-emerald-900/30 border border-primary/20">
+              <p className="text-sm text-gray-900 dark:text-white leading-relaxed">
+                By implementing these water-saving tips, you could reduce your daily water usage by up to{" "}
+                <span className="font-bold text-primary">30-40%</span>, helping preserve our rivers and water resources
+                for future generations.
+              </p>
+            </div>
           </div>
-        </section>
-      )}
+        </DialogContent>
+      </Dialog>
 
       {/* Call to Action */}
       <section className="py-16 px-4 bg-gradient-to-br from-blue-100 to-cyan-100 dark:from-blue-900/20 dark:to-cyan-900/20">

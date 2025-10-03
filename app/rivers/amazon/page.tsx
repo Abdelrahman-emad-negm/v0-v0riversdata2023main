@@ -24,7 +24,7 @@ export default function AmazonPage() {
   }
 
   return (
-    <main className="min-h-screen bg-gradient-to-b from-background via-background to-muted dark:from-gray-950 dark:via-gray-900 dark:to-gray-800">
+    <main className="min-h-screen bg-white">
       <LeftSidebar />
 
       <div className="fixed top-0 right-0 z-50 p-6">
@@ -44,10 +44,11 @@ export default function AmazonPage() {
           />
         </video>
 
-        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/50 to-black/70"></div>
+        {/* overlay */}
+        <div className="absolute inset-0 bg-black/40"></div>
 
         <div className="relative text-center text-white px-4">
-          <h1 className="font-oswald text-5xl md:text-7xl font-bold drop-shadow-2xl uppercase">Amazon River</h1>
+          <h1 className="font-serif text-5xl md:text-7xl font-bold drop-shadow-2xl">Amazon River</h1>
           <p className="text-xl md:text-2xl mt-4 drop-shadow-lg">The Largest River in the World</p>
 
           <div className="mt-8 max-w-4xl mx-auto">
@@ -70,18 +71,18 @@ export default function AmazonPage() {
       <section className="container mx-auto max-w-7xl px-6 py-4">
         <div className="w-full lg:w-1/2 mx-auto">
           <audio controls className="w-full rounded-lg">
-            <source src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/git-blob/prj_MSQncApIxGTAKdjDXP55fnhUitOs/GSJNTg8oCwkfxvdj_a9rnk/public/audio/amazon/audio.mp3" type="audio/mpeg" />
+            <source src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/amaz-JT2ElCmbIWNY9vVGBYKaukYLjMF49J.mp3" type="audio/mpeg" />
             Your browser does not support the audio element.
           </audio>
         </div>
       </section>
 
       <section className="container mx-auto max-w-7xl px-6 py-16">
-        <h2 className="font-oswald text-5xl font-bold text-center mb-12 text-foreground uppercase">VEGETATION</h2>
+        <h2 className="font-oswald text-5xl font-bold text-center mb-12 text-gray-800 uppercase">VEGETATION</h2>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-stretch">
           <div
-            className="p-8 rounded-md flex flex-col w-full cursor-pointer relative overflow-hidden bg-gradient-to-br from-blue-100 to-green-100 dark:from-blue-900/30 dark:to-green-900/30"
+            className="p-8 rounded-md flex flex-col w-full cursor-pointer relative overflow-hidden bg-gray-500/70"
             style={{
               transform: hoveredBox === "vegetation" ? "translateZ(30px) scale(1.02)" : "translateZ(0) scale(1)",
               boxShadow:
@@ -118,12 +119,12 @@ export default function AmazonPage() {
         </div>
 
         <div className="flex flex-col items-center mt-8">
-          <div className="w-full border-t-2 border-gray-300 dark:border-gray-700"></div>
+          <div className="w-full border-t-2 border-gray-300"></div>
         </div>
       </section>
 
       <section className="container mx-auto max-w-7xl px-6 pb-16 pt-8">
-        <h2 className="font-oswald text-5xl font-bold text-center mb-12 text-foreground uppercase">FIRES</h2>
+        <h2 className="font-oswald text-5xl font-bold text-center mb-12 text-gray-800 uppercase">FIRES</h2>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-stretch">
           <div className="border-8 border-yellow-400 rounded-lg shadow-xl p-2 bg-yellow-50 flex w-full overflow-hidden">
@@ -183,21 +184,19 @@ export default function AmazonPage() {
             onMouseEnter={() => setHoveredBox("waterLevels")}
             onMouseLeave={() => setHoveredBox(null)}
           >
-            <h3 className="font-oswald text-2xl font-bold text-gray-900 dark:text-white mb-4 uppercase">
-              Record Low Water Levels
-            </h3>
-            <p className="text-gray-900 dark:text-white font-merri leading-relaxed mb-4">
+            <h3 className="font-oswald text-2xl font-bold text-gray-800 mb-4 uppercase">Record Low Water Levels</h3>
+            <p className="text-gray-700 font-merri leading-relaxed mb-4">
               The Port of Manaus recorded a water level of 12.66 meters on October 4, 2024 - the lowest since records
               began in 1902. This severe drought is directly linked to deforestation and fires in the Amazon.
             </p>
-            <p className="text-gray-900 dark:text-white font-merri leading-relaxed">
+            <p className="text-gray-700 font-merri leading-relaxed">
               As trees are cut down, the forest loses its ability to generate rainfall. Less vegetation means less
               moisture, creating a dangerous cycle of drought and fire that threatens river transportation, communities,
               and wildlife throughout the region.
             </p>
           </div>
 
-          <div className="border-4 border-gray-300 dark:border-gray-600 rounded-lg shadow-xl p-4 bg-white dark:bg-gray-800">
+          <div className="border-4 border-gray-300 rounded-lg shadow-xl p-4 bg-white">
             <img
               src="/amazon-water-levels-graph.jpg"
               alt="Amazon River Water Levels Graph"
@@ -206,11 +205,11 @@ export default function AmazonPage() {
           </div>
         </div>
 
-        <div className="mt-8 w-full border-t-2 border-gray-300 dark:border-gray-700"></div>
+        <div className="mt-8 w-full border-t-2 border-gray-300"></div>
       </section>
 
       <section className="container mx-auto max-w-7xl px-6 py-16">
-        <h2 className="font-oswald text-5xl font-bold text-center mb-12 text-foreground -mt-8 uppercase">
+        <h2 className="font-oswald text-5xl font-bold text-center mb-12 text-gray-800 -mt-8 uppercase">
           HUMAN ACTIVITIES
         </h2>
 

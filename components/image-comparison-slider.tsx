@@ -7,6 +7,8 @@ interface ImageComparisonSliderProps {
   afterImage: string
   beforeAlt?: string
   afterAlt?: string
+  beforeLabel?: string
+  afterLabel?: string
 }
 
 export default function ImageComparisonSlider({
@@ -14,6 +16,8 @@ export default function ImageComparisonSlider({
   afterImage,
   beforeAlt = "Before",
   afterAlt = "After",
+  beforeLabel = "May 2019",
+  afterLabel = "Mar 2022",
 }: ImageComparisonSliderProps) {
   const [sliderPosition, setSliderPosition] = useState(50)
   const [isDragging, setIsDragging] = useState(false)
@@ -70,7 +74,7 @@ export default function ImageComparisonSlider({
       onMouseDown={handleMouseDown}
       onTouchStart={handleMouseDown}
     >
-      {/* After Image (Background) - May 2019 */}
+      {/* After Image (Background) */}
       <div className="absolute inset-0">
         <img
           src={afterImage || "/placeholder.svg"}
@@ -78,11 +82,11 @@ export default function ImageComparisonSlider({
           className="absolute inset-0 w-full h-full object-cover"
         />
         <div className="absolute bottom-4 right-4 bg-black/70 px-4 py-2 rounded-md pointer-events-none">
-          <p className="text-white font-bold text-sm tracking-wide">May 2019</p>
+          <p className="text-white font-bold text-sm tracking-wide">{afterLabel}</p>
         </div>
       </div>
 
-      {/* Before Image (Foreground with clip) - Mar 2022 */}
+      {/* Before Image (Foreground with clip) */}
       <div
         className="absolute inset-0 overflow-hidden"
         style={{
@@ -95,7 +99,7 @@ export default function ImageComparisonSlider({
           className="absolute inset-0 w-full h-full object-cover"
         />
         <div className="absolute bottom-4 left-4 bg-black/70 px-4 py-2 rounded-md pointer-events-none">
-          <p className="text-white font-bold text-sm tracking-wide">Mar 2022</p>
+          <p className="text-white font-bold text-sm tracking-wide">{beforeLabel}</p>
         </div>
       </div>
 
