@@ -7,7 +7,7 @@ import Link from "next/link"
 import { Card } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { ThemeToggle } from "@/components/theme-toggle"
-import { Upload, CheckCircle2, XCircle, Loader2 } from "lucide-react"
+import { Upload, CheckCircle2, XCircle, Loader2, Camera, X } from "lucide-react"
 
 interface DetectionResult {
   treeDetected: boolean
@@ -27,8 +27,76 @@ export default function PlantTreePage() {
   const [afterFile, setAfterFile] = useState<File | null>(null)
   const [isAnalyzing, setIsAnalyzing] = useState(false)
   const [result, setResult] = useState<DetectionResult | null>(null)
+  const [showCamera, setShowCamera] = useState<"before" | "after" | null>(null)
+  const [stream, setStream] = useState<MediaStream | null>(null)
   const beforeInputRef = useRef<HTMLInputElement>(null)
   const afterInputRef = useRef<HTMLInputElement>(null)
+  const videoRef = useRef<HTMLVideoElement>(null)
+  const canvasRef = useRef<HTMLCanvasElement>(null)
+
+  const startCamera = async (type: "before" | "after") => {
+    try {
+      const mediaStream = await navigator.mediaDevices.getUserMedia({
+        video: { facingMode: "environment" }, // Use back camera on mobile
+      })
+      setStream(mediaStream)
+      setShowCamera(type)
+
+      setTimeout(() => {
+        if (videoRef.current) {
+          videoRef.current.srcObject = mediaStream
+        }
+      }, 100)
+    } catch (error) {
+      console.error("Error accessing camera:", error)
+      alert("Unable to access camera. Please check permissions.")
+    }
+  }
+
+  const stopCamera = () => {
+    if (stream) {
+      stream.getTracks().forEach((track) => track.stop())
+      setStream(null)
+    }
+    setShowCamera(null)
+  }
+
+  const capturePhoto = () => {
+    if (!videoRef.current || !canvasRef.current) return
+
+    const video = videoRef.current
+    const canvas = canvasRef.current
+
+    canvas.width = video.videoWidth
+    canvas.height = video.videoHeight
+
+    const ctx = canvas.getContext("2d")
+    if (!ctx) return
+
+    ctx.drawImage(video, 0, 0)
+
+    canvas.toBlob(
+      (blob) => {
+        if (!blob) return
+
+        const file = new File([blob], `${showCamera}-photo.jpg`, { type: "image/jpeg" })
+        const imageUrl = URL.createObjectURL(blob)
+
+        if (showCamera === "before") {
+          setBeforeImage(imageUrl)
+          setBeforeFile(file)
+        } else {
+          setAfterImage(imageUrl)
+          setAfterFile(file)
+        }
+
+        stopCamera()
+        setResult(null)
+      },
+      "image/jpeg",
+      0.95,
+    )
+  }
 
   const handleBeforeImage = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0]
@@ -62,11 +130,8 @@ export default function PlantTreePage() {
     setIsAnalyzing(true)
 
     try {
-      // Simulate tree detection analysis
-      // In a real implementation, this would call a server action
       await new Promise((resolve) => setTimeout(resolve, 2000))
 
-      // Simple client-side analysis based on green pixel detection
       const beforeGreen = await countGreenPixels(beforeImage)
       const afterGreen = await countGreenPixels(afterImage)
 
@@ -74,7 +139,6 @@ export default function PlantTreePage() {
       const increasePercentage = beforeGreen > 0 ? (difference / beforeGreen) * 100 : 100
       const treeDetected = difference > 1000 // Threshold for tree detection
 
-      // Calculate accuracy based on difference
       let accuracy = 0
       if (treeDetected) {
         if (difference > 5000) {
@@ -127,13 +191,11 @@ export default function PlantTreePage() {
 
         let greenCount = 0
 
-        // Count green pixels (simple HSV-like detection)
         for (let i = 0; i < data.length; i += 4) {
           const r = data[i]
           const g = data[i + 1]
           const b = data[i + 2]
 
-          // Green detection: G > R and G > B, with reasonable thresholds
           if (g > r && g > b && g > 40 && g - r > 10 && g - b > 10) {
             greenCount++
           }
@@ -151,6 +213,7 @@ export default function PlantTreePage() {
     setBeforeFile(null)
     setAfterFile(null)
     setResult(null)
+    stopCamera()
   }
 
   return (
@@ -174,7 +237,34 @@ export default function PlantTreePage() {
         </Link>
       </div>
 
-      {/* Hero Section */}
+      {showCamera && (
+        <div className="fixed inset-0 z-50 bg-black/90 flex items-center justify-center p-4">
+          <div className="relative w-full max-w-4xl">
+            <Button
+              onClick={stopCamera}
+              variant="ghost"
+              size="icon"
+              className="absolute top-4 right-4 z-10 bg-white/20 hover:bg-white/30 text-white"
+            >
+              <X className="w-6 h-6" />
+            </Button>
+
+            <div className="bg-white dark:bg-gray-900 rounded-lg overflow-hidden">
+              <video ref={videoRef} autoPlay playsInline className="w-full h-auto" />
+
+              <div className="p-6 text-center">
+                <Button onClick={capturePhoto} size="lg" className="px-8 py-6 text-lg font-semibold">
+                  <Camera className="w-5 h-5 mr-2" />
+                  Capture Photo
+                </Button>
+              </div>
+            </div>
+
+            <canvas ref={canvasRef} className="hidden" />
+          </div>
+        </div>
+      )}
+
       <section className="pt-32 pb-16 px-4 bg-gradient-to-br from-green-100 to-emerald-100 dark:from-green-900/20 dark:to-emerald-900/20">
         <div className="container mx-auto max-w-4xl text-center">
           <div className="text-6xl mb-6">🌳</div>
@@ -182,16 +272,15 @@ export default function PlantTreePage() {
             Plant a Tree, Help the Environment
           </h1>
           <p className="text-xl text-gray-700 dark:text-gray-300 leading-relaxed text-pretty">
-            Upload before and after photos of your tree planting to verify your contribution to the environment
+            Upload or capture before and after photos of your tree planting to verify your contribution to the
+            environment
           </p>
         </div>
       </section>
 
-      {/* Upload Section */}
       <section className="py-16 px-4">
         <div className="container mx-auto max-w-6xl">
           <div className="grid md:grid-cols-2 gap-8 mb-8">
-            {/* Before Image */}
             <Card className="p-6 bg-gradient-to-br from-orange-50 to-red-50 dark:from-orange-900/20 dark:to-red-900/20">
               <h3 className="font-oswald text-2xl font-bold mb-4 text-center text-gray-900 dark:text-white uppercase">
                 Before Planting
@@ -221,9 +310,14 @@ export default function PlantTreePage() {
                 onChange={handleBeforeImage}
                 className="hidden"
               />
+              <div className="mt-4 text-center">
+                <Button onClick={() => startCamera("before")} variant="outline" className="w-full">
+                  <Camera className="w-4 h-4 mr-2" />
+                  Use Camera
+                </Button>
+              </div>
             </Card>
 
-            {/* After Image */}
             <Card className="p-6 bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20">
               <h3 className="font-oswald text-2xl font-bold mb-4 text-center text-gray-900 dark:text-white uppercase">
                 After Planting
@@ -247,10 +341,15 @@ export default function PlantTreePage() {
                 )}
               </div>
               <input ref={afterInputRef} type="file" accept="image/*" onChange={handleAfterImage} className="hidden" />
+              <div className="mt-4 text-center">
+                <Button onClick={() => startCamera("after")} variant="outline" className="w-full">
+                  <Camera className="w-4 h-4 mr-2" />
+                  Use Camera
+                </Button>
+              </div>
             </Card>
           </div>
 
-          {/* Analyze Button */}
           <div className="text-center mb-8">
             <Button
               onClick={analyzeImages}
@@ -279,7 +378,6 @@ export default function PlantTreePage() {
             )}
           </div>
 
-          {/* Results */}
           {result && (
             <Card
               className={`p-8 ${result.treeDetected ? "bg-gradient-to-br from-green-100 to-emerald-100 dark:from-green-900/30 dark:to-emerald-900/30 border-green-500" : "bg-gradient-to-br from-red-100 to-orange-100 dark:from-red-900/30 dark:to-orange-900/30 border-red-500"} border-2`}
@@ -347,7 +445,6 @@ export default function PlantTreePage() {
         </div>
       </section>
 
-      {/* Info Section */}
       <section className="py-16 px-4 bg-gradient-to-br from-green-100 to-blue-100 dark:from-green-900/20 dark:to-blue-900/20">
         <div className="container mx-auto max-w-4xl">
           <Card className="p-8 bg-white/80 dark:bg-gray-900/80">
