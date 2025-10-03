@@ -71,7 +71,7 @@ const activities: Activity[] = [
   {
     id: "brushing",
     name: "Brushing Teeth",
-    icon: "🪥",
+    icon: "🦷", // Replaced toothbrush emoji with tooth emoji for better cross-platform support
     waterUsage: 8,
     duration: "2 minutes",
     tips: [

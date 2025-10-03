@@ -1,30 +1,93 @@
-# riversdata94main
+# Rivers Data - Water Conservation Platform
 
-*Automatically synced with your [v0.app](https://v0.app) deployments*
-
-[![Deployed on Vercel](https://img.shields.io/badge/Deployed%20on-Vercel-black?style=for-the-badge&logo=vercel)](https://vercel.com/messiandowen-2127s-projects/v0-riversdata94main)
-[![Built with v0](https://img.shields.io/badge/Built%20with-v0.app-black?style=for-the-badge)](https://v0.app/chat/projects/W3dpHp7I2c9)
+A comprehensive educational platform dedicated to raising awareness about the world's most important rivers and promoting water conservation practices.
 
 ## Overview
 
-This repository will stay in sync with your deployed chats on [v0.app](https://v0.app).
-Any changes you make to your deployed app will be automatically pushed to this repository from [v0.app](https://v0.app).
+This Next.js application provides interactive educational content about major rivers including the Amazon, Nile, and Yangtze. It features specialized sections for different audiences including students, adults, and farmers, each with tailored water conservation strategies and interactive learning tools.
+
+## Features
+
+- **River Information**: Detailed pages about major rivers with environmental data and challenges
+- **Interactive Learning**: Quizzes and games for students to learn about water conservation
+- **Adult Water Calculator**: Track daily water usage and get personalized conservation tips
+- **Farmer Resources**: Agricultural water management techniques and sustainable farming practices
+- **Tree Planting Verification**: AI-powered image analysis to verify tree planting activities
+- **Responsive Design**: Fully responsive interface with dark mode support
+
+## Tech Stack
+
+- **Framework**: Next.js 15 with App Router
+- **Styling**: Tailwind CSS v4
+- **UI Components**: shadcn/ui
+- **Image Processing**: Python with OpenCV for tree detection
+- **TypeScript**: Full type safety throughout the application
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js 18+ 
+- Python 3.8+ (for tree detection features)
+
+### Installation
+
+1. Clone the repository
+\`\`\`bash
+git clone <your-repo-url>
+cd riversdata27main
+\`\`\`
+
+2. Install dependencies
+\`\`\`bash
+npm install
+\`\`\`
+
+3. Run the development server
+\`\`\`bash
+npm run dev
+\`\`\`
+
+4. Open [http://localhost:3000](http://localhost:3000) in your browser
+
+### Python Setup (for tree detection)
+
+\`\`\`bash
+pip install opencv-python numpy pillow
+\`\`\`
+
+## Project Structure
+
+\`\`\`
+├── app/
+│   ├── adults/          # Adult water conservation section
+│   ├── farmers/         # Farmer resources and practices
+│   ├── students/        # Student quizzes and games
+│   ├── rivers/          # Individual river pages
+│   └── page.tsx         # Homepage
+├── components/          # Reusable UI components
+├── scripts/            # Python scripts for image processing
+└── public/             # Static assets
+\`\`\`
 
 ## Deployment
 
-Your project is live at:
+This project can be deployed on Vercel:
 
-**[https://vercel.com/messiandowen-2127s-projects/v0-riversdata94main](https://vercel.com/messiandowen-2127s-projects/v0-riversdata94main)**
+\`\`\`bash
+npm run build
+\`\`\`
 
-## Build your app
+Then push to your Git repository and connect it to Vercel for automatic deployments.
 
-Continue building your app on:
+## Contributing
 
-**[https://v0.app/chat/projects/W3dpHp7I2c9](https://v0.app/chat/projects/W3dpHp7I2c9)**
+Contributions are welcome! Please feel free to submit a Pull Request.
 
-## How It Works
+## License
 
-1. Create and modify your project using [v0.app](https://v0.app)
-2. Deploy your chats from the v0 interface
-3. Changes are automatically pushed to this repository
-4. Vercel deploys the latest version from this repository
+MIT License - feel free to use this project for educational purposes.
+
+## Contact
+
+For questions or feedback, please open an issue in the repository.
