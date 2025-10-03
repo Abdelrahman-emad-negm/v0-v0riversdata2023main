@@ -7,7 +7,7 @@ import Link from "next/link"
 import { Card } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { ThemeToggle } from "@/components/theme-toggle"
-import { Upload, CheckCircle2, XCircle, Loader2, Camera, X } from "lucide-react"
+import { Upload, CheckCircle2, XCircle, Loader2, Camera, X, Sparkles, TreeDeciduous, Leaf } from "lucide-react"
 
 interface DetectionResult {
   treeDetected: boolean
@@ -37,7 +37,7 @@ export default function PlantTreePage() {
   const startCamera = async (type: "before" | "after") => {
     try {
       const mediaStream = await navigator.mediaDevices.getUserMedia({
-        video: { facingMode: "environment" }, // Use back camera on mobile
+        video: { facingMode: "environment" },
       })
       setStream(mediaStream)
       setShowCamera(type)
@@ -137,7 +137,7 @@ export default function PlantTreePage() {
 
       const difference = afterGreen - beforeGreen
       const increasePercentage = beforeGreen > 0 ? (difference / beforeGreen) * 100 : 100
-      const treeDetected = difference > 1000 // Threshold for tree detection
+      const treeDetected = difference > 1000
 
       let accuracy = 0
       if (treeDetected) {
@@ -265,6 +265,171 @@ export default function PlantTreePage() {
         </div>
       )}
 
+      {result && (
+        <div className="fixed inset-0 z-40 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 animate-in fade-in duration-300">
+          <div className="w-full max-w-4xl max-h-[90vh] overflow-y-auto">
+            <Card
+              className={`relative overflow-hidden ${
+                result.treeDetected
+                  ? "bg-gradient-to-br from-emerald-50 via-green-50 to-teal-50 dark:from-emerald-950 dark:via-green-950 dark:to-teal-950"
+                  : "bg-gradient-to-br from-red-50 via-orange-50 to-amber-50 dark:from-red-950 dark:via-orange-950 dark:to-amber-950"
+              } border-2 ${result.treeDetected ? "border-emerald-200 dark:border-emerald-800" : "border-red-200 dark:border-red-800"} shadow-2xl animate-in zoom-in-95 duration-500`}
+            >
+              {/* Decorative Elements */}
+              <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-white/20 to-transparent rounded-full blur-3xl" />
+              <div className="absolute bottom-0 left-0 w-64 h-64 bg-gradient-to-tr from-white/20 to-transparent rounded-full blur-3xl" />
+
+              <div className="relative p-8 md:p-12">
+                {/* Header Section */}
+                <div className="text-center mb-8">
+                  {result.treeDetected ? (
+                    <>
+                      <div className="inline-flex items-center justify-center w-24 h-24 rounded-full bg-gradient-to-br from-emerald-400 to-green-500 mb-6 shadow-lg animate-in zoom-in duration-700">
+                        <CheckCircle2 className="w-14 h-14 text-white" strokeWidth={2.5} />
+                      </div>
+                      <div className="flex items-center justify-center gap-2 mb-4">
+                        <Sparkles className="w-6 h-6 text-emerald-600 dark:text-emerald-400 animate-pulse" />
+                        <h2 className="font-oswald text-5xl md:text-6xl font-bold bg-gradient-to-r from-emerald-700 to-green-600 dark:from-emerald-400 dark:to-green-400 bg-clip-text text-transparent uppercase">
+                          Tree Detected!
+                        </h2>
+                        <Sparkles className="w-6 h-6 text-emerald-600 dark:text-emerald-400 animate-pulse" />
+                      </div>
+                      <p className="text-xl md:text-2xl text-emerald-700 dark:text-emerald-300 font-semibold">
+                        Amazing work! You're making a real difference
+                      </p>
+                    </>
+                  ) : (
+                    <>
+                      <div className="inline-flex items-center justify-center w-24 h-24 rounded-full bg-gradient-to-br from-red-400 to-orange-500 mb-6 shadow-lg">
+                        <XCircle className="w-14 h-14 text-white" strokeWidth={2.5} />
+                      </div>
+                      <h2 className="font-oswald text-5xl md:text-6xl font-bold bg-gradient-to-r from-red-700 to-orange-600 dark:from-red-400 dark:to-orange-400 bg-clip-text text-transparent mb-4 uppercase">
+                        No Tree Detected
+                      </h2>
+                      <p className="text-xl md:text-2xl text-red-700 dark:text-red-300 font-semibold">
+                        Please plant a tree and try again
+                      </p>
+                    </>
+                  )}
+                </div>
+
+                {/* Stats Grid */}
+                <div className="grid grid-cols-2 gap-4 md:gap-6 mb-8">
+                  <div className="bg-white/70 dark:bg-gray-900/70 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-white/50 dark:border-gray-800/50">
+                    <div className="flex items-center gap-2 mb-2">
+                      <div className="w-3 h-3 rounded-full bg-gradient-to-r from-emerald-500 to-green-500" />
+                      <p className="text-sm font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wide">
+                        Accuracy
+                      </p>
+                    </div>
+                    <p className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-emerald-600 to-green-600 dark:from-emerald-400 dark:to-green-400 bg-clip-text text-transparent">
+                      {result.accuracy.toFixed(1)}%
+                    </p>
+                  </div>
+
+                  <div className="bg-white/70 dark:bg-gray-900/70 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-white/50 dark:border-gray-800/50">
+                    <div className="flex items-center gap-2 mb-2">
+                      <div className="w-3 h-3 rounded-full bg-gradient-to-r from-teal-500 to-cyan-500" />
+                      <p className="text-sm font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wide">
+                        Growth
+                      </p>
+                    </div>
+                    <p className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-teal-600 to-cyan-600 dark:from-teal-400 dark:to-cyan-400 bg-clip-text text-transparent">
+                      +{result.increasePercentage.toFixed(0)}%
+                    </p>
+                  </div>
+                </div>
+
+                {/* Before/After Images */}
+                <div className="grid md:grid-cols-2 gap-6 mb-8">
+                  <div className="group">
+                    <div className="bg-white/70 dark:bg-gray-900/70 backdrop-blur-sm rounded-2xl p-4 shadow-lg border border-white/50 dark:border-gray-800/50 transition-transform duration-300 hover:scale-[1.02]">
+                      <div className="flex items-center gap-2 mb-3">
+                        <div className="w-2 h-2 rounded-full bg-orange-500" />
+                        <h4 className="font-oswald text-lg font-bold text-gray-900 dark:text-white uppercase tracking-wide">
+                          Before Planting
+                        </h4>
+                      </div>
+                      <div className="rounded-xl overflow-hidden shadow-md">
+                        <img src={beforeImage || "/placeholder.svg"} alt="Before" className="w-full h-auto" />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="group">
+                    <div className="bg-white/70 dark:bg-gray-900/70 backdrop-blur-sm rounded-2xl p-4 shadow-lg border border-white/50 dark:border-gray-800/50 transition-transform duration-300 hover:scale-[1.02]">
+                      <div className="flex items-center gap-2 mb-3">
+                        <div className="w-2 h-2 rounded-full bg-emerald-500" />
+                        <h4 className="font-oswald text-lg font-bold text-gray-900 dark:text-white uppercase tracking-wide">
+                          After Planting
+                        </h4>
+                      </div>
+                      <div className="rounded-xl overflow-hidden shadow-md">
+                        <img src={afterImage || "/placeholder.svg"} alt="After" className="w-full h-auto" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Environmental Impact */}
+                {result.treeDetected && (
+                  <div className="bg-gradient-to-r from-emerald-600 via-green-600 to-teal-600 dark:from-emerald-700 dark:via-green-700 dark:to-teal-700 text-white rounded-2xl p-8 shadow-xl mb-6">
+                    <div className="flex items-center justify-center gap-3 mb-4">
+                      <TreeDeciduous className="w-8 h-8" />
+                      <h3 className="font-oswald text-3xl font-bold uppercase">Your Environmental Impact</h3>
+                      <Leaf className="w-8 h-8" />
+                    </div>
+                    <div className="space-y-3 text-center">
+                      <p className="text-lg leading-relaxed">
+                        You've added approximately{" "}
+                        <span className="font-bold text-2xl text-emerald-100">
+                          {result.difference.toLocaleString()}
+                        </span>{" "}
+                        pixels of vegetation!
+                      </p>
+                      <div className="grid md:grid-cols-3 gap-4 mt-6">
+                        <div className="bg-white/20 backdrop-blur-sm rounded-xl p-4">
+                          <p className="text-3xl font-bold mb-1">💨</p>
+                          <p className="text-sm font-semibold">Absorbs CO₂</p>
+                        </div>
+                        <div className="bg-white/20 backdrop-blur-sm rounded-xl p-4">
+                          <p className="text-3xl font-bold mb-1">🌊</p>
+                          <p className="text-sm font-semibold">Protects Rivers</p>
+                        </div>
+                        <div className="bg-white/20 backdrop-blur-sm rounded-xl p-4">
+                          <p className="text-3xl font-bold mb-1">🦜</p>
+                          <p className="text-sm font-semibold">Wildlife Habitat</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {/* Action Buttons */}
+                <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                  <Button
+                    onClick={reset}
+                    size="lg"
+                    className="px-8 py-6 text-lg font-semibold bg-gradient-to-r from-emerald-600 to-green-600 hover:from-emerald-700 hover:to-green-700 text-white shadow-lg"
+                  >
+                    <TreeDeciduous className="w-5 h-5 mr-2" />
+                    Plant Another Tree
+                  </Button>
+                  <Button
+                    onClick={() => setResult(null)}
+                    size="lg"
+                    variant="outline"
+                    className="px-8 py-6 text-lg font-semibold bg-white/50 dark:bg-gray-900/50 backdrop-blur-sm"
+                  >
+                    Close
+                  </Button>
+                </div>
+              </div>
+            </Card>
+          </div>
+        </div>
+      )}
+
       <section className="pt-32 pb-16 px-4 bg-gradient-to-br from-green-100 to-emerald-100 dark:from-green-900/20 dark:to-emerald-900/20">
         <div className="container mx-auto max-w-4xl text-center">
           <div className="text-6xl mb-6">🌳</div>
@@ -286,15 +451,14 @@ export default function PlantTreePage() {
                 Before Planting
               </h3>
               <div
-                className="border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-lg p-8 text-center cursor-pointer hover:border-primary transition-colors min-h-[300px] flex flex-col items-center justify-center bg-white/50 dark:bg-gray-900/50"
+                className={`border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-lg p-4 text-center cursor-pointer hover:border-primary transition-colors ${beforeImage ? "min-h-[150px]" : "min-h-[300px]"} flex flex-col items-center justify-center bg-white/50 dark:bg-gray-900/50`}
                 onClick={() => beforeInputRef.current?.click()}
               >
                 {beforeImage ? (
-                  <img
-                    src={beforeImage || "/placeholder.svg"}
-                    alt="Before"
-                    className="max-w-full max-h-[400px] rounded-lg"
-                  />
+                  <div className="flex items-center gap-2">
+                    <CheckCircle2 className="w-6 h-6 text-green-600" />
+                    <p className="text-gray-700 dark:text-gray-300 font-semibold">Image uploaded</p>
+                  </div>
                 ) : (
                   <>
                     <Upload className="w-16 h-16 text-gray-400 mb-4" />
@@ -323,15 +487,14 @@ export default function PlantTreePage() {
                 After Planting
               </h3>
               <div
-                className="border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-lg p-8 text-center cursor-pointer hover:border-primary transition-colors min-h-[300px] flex flex-col items-center justify-center bg-white/50 dark:bg-gray-900/50"
+                className={`border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-lg p-4 text-center cursor-pointer hover:border-primary transition-colors ${afterImage ? "min-h-[150px]" : "min-h-[300px]"} flex flex-col items-center justify-center bg-white/50 dark:bg-gray-900/50`}
                 onClick={() => afterInputRef.current?.click()}
               >
                 {afterImage ? (
-                  <img
-                    src={afterImage || "/placeholder.svg"}
-                    alt="After"
-                    className="max-w-full max-h-[400px] rounded-lg"
-                  />
+                  <div className="flex items-center gap-2">
+                    <CheckCircle2 className="w-6 h-6 text-green-600" />
+                    <p className="text-gray-700 dark:text-gray-300 font-semibold">Image uploaded</p>
+                  </div>
                 ) : (
                   <>
                     <Upload className="w-16 h-16 text-gray-400 mb-4" />
@@ -377,71 +540,6 @@ export default function PlantTreePage() {
               </Button>
             )}
           </div>
-
-          {result && (
-            <Card
-              className={`p-8 ${result.treeDetected ? "bg-gradient-to-br from-green-100 to-emerald-100 dark:from-green-900/30 dark:to-emerald-900/30 border-green-500" : "bg-gradient-to-br from-red-100 to-orange-100 dark:from-red-900/30 dark:to-orange-900/30 border-red-500"} border-2`}
-            >
-              <div className="text-center mb-6">
-                {result.treeDetected ? (
-                  <>
-                    <CheckCircle2 className="w-20 h-20 text-green-600 dark:text-green-400 mx-auto mb-4" />
-                    <h2 className="font-oswald text-4xl font-bold text-green-800 dark:text-green-300 mb-2 uppercase">
-                      Tree Detected!
-                    </h2>
-                    <p className="text-xl text-green-700 dark:text-green-400 font-semibold">
-                      Thank you for helping the environment!
-                    </p>
-                  </>
-                ) : (
-                  <>
-                    <XCircle className="w-20 h-20 text-red-600 dark:text-red-400 mx-auto mb-4" />
-                    <h2 className="font-oswald text-4xl font-bold text-red-800 dark:text-red-300 mb-2 uppercase">
-                      No Tree Detected
-                    </h2>
-                    <p className="text-xl text-red-700 dark:text-red-400 font-semibold">
-                      Please ensure you planted a tree and try again
-                    </p>
-                  </>
-                )}
-              </div>
-
-              <div className="grid md:grid-cols-2 gap-6 mb-6">
-                <div className="bg-white/50 dark:bg-gray-900/50 p-4 rounded-lg">
-                  <p className="text-sm text-gray-600 dark:text-gray-400 mb-1">Detection Accuracy</p>
-                  <p className="text-3xl font-bold text-gray-900 dark:text-white">{result.accuracy.toFixed(1)}%</p>
-                </div>
-                <div className="bg-white/50 dark:bg-gray-900/50 p-4 rounded-lg">
-                  <p className="text-sm text-gray-600 dark:text-gray-400 mb-1">Vegetation Increase</p>
-                  <p className="text-3xl font-bold text-gray-900 dark:text-white">
-                    {result.increasePercentage.toFixed(1)}%
-                  </p>
-                </div>
-              </div>
-
-              {result.treeDetected && (
-                <div className="bg-gradient-to-r from-green-600 to-emerald-600 dark:from-green-700 dark:to-emerald-700 text-white p-6 rounded-lg text-center">
-                  <h3 className="font-oswald text-2xl font-bold mb-3 uppercase">Your Environmental Impact</h3>
-                  <p className="text-lg leading-relaxed mb-4">
-                    You've added approximately{" "}
-                    <span className="font-bold text-2xl">{result.difference.toLocaleString()}</span> pixels of
-                    vegetation!
-                  </p>
-                  <p className="text-base leading-relaxed">
-                    This tree will help absorb CO₂, produce oxygen, prevent soil erosion, and provide habitat for
-                    wildlife. Your contribution makes a real difference in fighting climate change and protecting our
-                    rivers!
-                  </p>
-                </div>
-              )}
-
-              <div className="text-center mt-6">
-                <Button onClick={reset} size="lg" variant="outline" className="px-8 bg-transparent">
-                  Plant Another Tree
-                </Button>
-              </div>
-            </Card>
-          )}
         </div>
       </section>
 
