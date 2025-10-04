@@ -226,7 +226,7 @@ export default function AdultsPage() {
 
       {/* Results Section */}
       <Dialog open={showResults} onOpenChange={setShowResults}>
-        <DialogContent className="max-w-3xl max-h-[90vh] overflow-y-auto">
+        <DialogContent className="max-w-5xl max-h-[90vh] overflow-y-auto">
           <DialogHeader>
             <DialogTitle className="font-oswald text-3xl font-bold text-center uppercase">
               Your Water Impact
@@ -237,33 +237,35 @@ export default function AdultsPage() {
           </DialogHeader>
 
           <div className="space-y-8 py-4">
-            {/* Total Usage */}
-            <div className="text-center p-6 rounded-2xl bg-gradient-to-br from-blue-100 to-cyan-100 dark:from-blue-900/30 dark:to-cyan-900/30">
-              <p className="text-base text-gray-900 dark:text-white mb-2 font-semibold">Daily Water Usage</p>
-              <p className="text-5xl font-bold text-primary mb-2">{calculateTotal()}L</p>
-              <p className="text-sm text-gray-700 dark:text-gray-300">
-                That's {(calculateTotal() / 1000).toFixed(2)} cubic meters per day
-              </p>
-              <p className="text-sm text-gray-700 dark:text-gray-300 mt-2">
-                Annual usage: {(calculateTotal() * 365).toLocaleString()}L
-              </p>
-            </div>
+            <div className="grid md:grid-cols-2 gap-6">
+              {/* Total Usage */}
+              <div className="text-center p-6 rounded-2xl bg-gradient-to-br from-blue-100 to-cyan-100 dark:from-blue-900/30 dark:to-cyan-900/30 h-fit">
+                <p className="text-base text-gray-900 dark:text-white mb-2 font-semibold">Daily Water Usage</p>
+                <p className="text-5xl font-bold text-primary mb-2">{calculateTotal()}L</p>
+                <p className="text-sm text-gray-700 dark:text-gray-300">
+                  That's {(calculateTotal() / 1000).toFixed(2)} cubic meters per day
+                </p>
+                <p className="text-sm text-gray-700 dark:text-gray-300 mt-2">
+                  Annual usage: {(calculateTotal() * 365).toLocaleString()}L
+                </p>
+              </div>
 
-            {/* Conservation Tips */}
-            <div>
-              <h3 className="font-oswald text-xl font-bold mb-4 text-gray-900 dark:text-white text-center uppercase">
-                Ways to Reduce Your Water Footprint
-              </h3>
-              <div className="space-y-3">
-                {getSelectedTips().map((tip, index) => (
-                  <div
-                    key={index}
-                    className="flex items-start gap-3 p-3 rounded-lg bg-gradient-to-br from-blue-50 to-cyan-50 dark:from-blue-900/20 dark:to-cyan-900/20"
-                  >
-                    <span className="text-primary font-bold text-lg">💧</span>
-                    <p className="text-sm text-gray-900 dark:text-white leading-relaxed">{tip}</p>
-                  </div>
-                ))}
+              {/* Conservation Tips */}
+              <div>
+                <h3 className="font-oswald text-xl font-bold mb-4 text-gray-900 dark:text-white uppercase">
+                  Ways to Reduce Your Water Footprint
+                </h3>
+                <div className="space-y-3">
+                  {getSelectedTips().map((tip, index) => (
+                    <div
+                      key={index}
+                      className="flex items-start gap-3 p-3 rounded-lg bg-gradient-to-br from-blue-50 to-cyan-50 dark:from-blue-900/20 dark:to-cyan-900/20"
+                    >
+                      <span className="text-primary font-bold text-lg"></span>
+                      <p className="text-sm text-gray-900 dark:text-white leading-relaxed">{tip}</p>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
 
@@ -280,12 +282,21 @@ export default function AdultsPage() {
       </Dialog>
 
       {/* Call to Action */}
-      <section className="py-16 px-4 bg-gradient-to-br from-blue-100 to-cyan-100 dark:from-blue-900/20 dark:to-cyan-900/20">
-        <div className="container mx-auto max-w-3xl text-center">
-          <h2 className="font-oswald text-3xl md:text-4xl font-bold mb-6 text-gray-900 dark:text-white uppercase">
+      <section className="relative py-16 px-4 overflow-hidden">
+        <div className="absolute inset-0 z-0">
+          <img
+            src="/images/design-mode/WhatsApp%20Image%202025-10-04%20at%2000.12.43_add4aa60.jpg"
+            alt="Water droplet"
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-blue-900/60 dark:bg-blue-950/70" />
+        </div>
+
+        <div className="container mx-auto max-w-3xl text-center relative z-10">
+          <h2 className="font-oswald text-3xl md:text-4xl font-bold mb-6 text-white uppercase drop-shadow-lg">
             Every Drop Counts
           </h2>
-          <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed mb-8">
+          <p className="text-lg text-white leading-relaxed mb-8 drop-shadow-md">
             Small changes in our daily habits can make a significant impact on water conservation. Start today and be
             part of the solution to protect our rivers and water resources.
           </p>

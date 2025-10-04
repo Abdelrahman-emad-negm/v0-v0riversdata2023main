@@ -52,7 +52,7 @@ export function Navigation({ overviewRef, chooseRoleRef, aboutRef, takeActionRef
             activeSection === "choose-role" ? "text-primary" : "text-foreground"
           }`}
         >
-          Choose Your Role
+          Choose Your Journey
         </button>
         <button
           onClick={() => scrollToSection(takeActionRef, "take-action")}

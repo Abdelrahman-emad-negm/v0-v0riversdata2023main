@@ -11,7 +11,7 @@ interface ImageComparisonSliderProps {
   afterLabel?: string
 }
 
-export default function ImageComparisonSlider({
+export function ImageComparisonSlider({
   beforeImage,
   afterImage,
   beforeAlt = "Before",
@@ -122,3 +122,5 @@ export default function ImageComparisonSlider({
     </div>
   )
 }
+
+export default ImageComparisonSlider

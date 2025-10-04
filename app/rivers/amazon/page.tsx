@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react"
 import { useRouter } from "next/navigation"
 import { LeftSidebar } from "@/components/left-sidebar"
+import { ImageComparisonSlider } from "@/components/image-comparison-slider"
 
 export default function AmazonPage() {
   const router = useRouter()
@@ -51,7 +52,7 @@ export default function AmazonPage() {
           <h1 className="font-serif text-5xl md:text-7xl font-bold drop-shadow-2xl">Amazon River</h1>
           <p className="text-xl md:text-2xl mt-4 drop-shadow-lg">The Largest River in the World</p>
 
-          <div className="mt-8 max-w-4xl mx-auto">
+          <div className="mt-8 max-w-6xl mx-auto">
             <p
               className="text-left text-base md:text-lg leading-relaxed drop-shadow-lg transition-all duration-1000 ease-out"
               style={{
@@ -77,6 +78,10 @@ export default function AmazonPage() {
             />
             Your browser does not support the audio element.
           </audio>
+        </div>
+
+        <div className="flex flex-col items-center mt-12">
+          <div className="w-full border-t-2 border-gray-300"></div>
         </div>
       </section>
 
@@ -131,13 +136,12 @@ export default function AmazonPage() {
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-stretch">
           <div className="border-8 border-yellow-400 rounded-lg shadow-xl p-2 bg-yellow-50 flex w-full overflow-hidden">
-            <video className="w-full h-full rounded object-cover scale-110" autoPlay loop muted playsInline>
-              <source
-                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/WhatsApp%20Video%202025-10-02%20at%2014.46.57_d400de67-cBBvkyryAT9MLPvMXUUTlXP7C1Xq1y.mp4"
-                type="video/mp4"
-              />
-              Your browser does not support the video tag.
-            </video>
+            <ImageComparisonSlider
+              beforeImage="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot%202025-10-03%20223329-at7JF1f0m5hf6LDvrY01Z1ZKTRLfRI.png"
+              afterImage="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot%202025-10-03%20223402-9b7bb8vupLB39QEW8X3rbcUPtyZVZw.png"
+              beforeLabel="2005"
+              afterLabel="2025"
+            />
           </div>
 
           <div

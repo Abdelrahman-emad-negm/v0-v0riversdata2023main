@@ -52,7 +52,7 @@ export default function NilePage() {
           <h1 className="font-serif text-5xl md:text-7xl font-bold drop-shadow-2xl">Nile River</h1>
           <p className="text-xl md:text-2xl mt-4 drop-shadow-lg">The Longest River in the World</p>
 
-          <div className="mt-8 max-w-4xl mx-auto">
+          <div className="mt-8 max-w-6xl mx-auto">
             <p
               className="text-left text-base md:text-lg leading-relaxed drop-shadow-lg transition-all duration-1000 ease-out"
               style={{
@@ -78,6 +78,10 @@ export default function NilePage() {
             />
             Your browser does not support the audio element.
           </audio>
+        </div>
+
+        <div className="flex flex-col items-center mt-12">
+          <div className="w-full border-t-2 border-gray-300"></div>
         </div>
       </section>
 

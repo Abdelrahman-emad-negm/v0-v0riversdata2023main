@@ -200,7 +200,7 @@ export default function StudentsPage() {
   }
 
   if (quizCompleted) {
-    const progressImage = score === 0 ? "/fail-grade.jpg" : `/progress${score}_6.png`
+    const progressImage = score === 0 ? "/progress_0_6.png" : `/progress${score}_6.png`
 
     return (
       <main className="min-h-screen relative">
